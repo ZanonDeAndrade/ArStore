@@ -4,25 +4,25 @@
    ============================================================ */
 
 :root {
-  /* Cores da marca (extraídas do tema atual da loja) */
+  /* Cores da marca (paleta rosa do banner AR STORE) */
   --bg:            #ffffff;
   --text:          #333333;
   --text-soft:     #6b6770;
-  --accent:        #e2c5f8;  /* lilás — botões/etiquetas do tema */
-  --accent-strong: #8d5bd1;  /* lilás escurecido p/ contraste (links/realces) */
-  --accent-soft:   #f3e5fc;  /* lilás claro — fundo do rodapé do tema */
-  --section-bg:    #eff2ee;  /* cinza-esverdeado — seções do tema */
-  --line:          #ece7f1;  /* divisórias suaves */
-  --line-strong:   #ddd4e8;
+  --accent:        #e39093;  /* rosa principal do banner — bordas/realces */
+  --accent-strong: #b0555a;  /* rosa escurecido p/ contraste (links/textos) */
+  --accent-soft:   #f6e4e3;  /* rosa bem claro — fundos suaves */
+  --section-bg:    #f7f1f0;  /* neutro quente — seções */
+  --line:          #f1e6e6;  /* divisórias suaves */
+  --line-strong:   #e6d2d2;
   --whatsapp:      #25d366;
   --whatsapp-text: #0c7a3e;  /* verde escuro p/ texto sobre branco/CTA */
-  --note-bg:       #fbf4ff;
-  --note-border:   #d8b6f4;
+  --note-bg:       #fdf4f4;
+  --note-border:   #e8b4b6;
 
   --radius:   4px;
   --radius-lg: 10px;
   --shadow-sm: 0 1px 2px rgba(51, 51, 51, .06);
-  --shadow-md: 0 8px 28px rgba(86, 53, 122, .10);
+  --shadow-md: 0 8px 28px rgba(170, 80, 85, .12);
 
   --maxw:      1080px;  /* largura geral */
   --readw:     860px;   /* coluna de leitura (acordeões) */
