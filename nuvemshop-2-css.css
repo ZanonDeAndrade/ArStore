@@ -1,0 +1,113 @@
+/* ===========================================================
+   AR STORE - Duvidas Frequentes  >>> PARTE 2 de 2: CSS
+   Cole este CSS em: Loja online > Layout > Edicao de css avancada.
+   Tudo esta escopado em .arstore-faq, entao SO afeta a pagina de
+   Duvidas Frequentes (o conteudo colado no Codigo fonte) e NAO o
+   resto da loja. As fontes (Piazzolla / Instrument Sans) ja sao
+   carregadas pelo tema.
+   =========================================================== */
+
+.arstore-faq {
+  --afaq-text: #333333;
+  --afaq-text-soft: #6b6770;
+  --afaq-text-body: #4a4650;
+  --afaq-accent: #e2c5f8;
+  --afaq-accent-strong: #8d5bd1;
+  --afaq-accent-soft: #f3e5fc;
+  --afaq-section-bg: #eff2ee;
+  --afaq-line: #ece7f1;
+  --afaq-line-strong: #ddd4e8;
+  --afaq-whatsapp: #0c7a3e;
+  --afaq-note-bg: #fbf4ff;
+  --afaq-note-border: #d8b6f4;
+  --afaq-serif: "Piazzolla", Georgia, "Times New Roman", serif;
+  --afaq-sans: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  font-family: var(--afaq-sans);
+  font-size: 14px;            /* --font-base do tema */
+  line-height: 1.6;
+  color: var(--afaq-text);
+  max-width: 860px;
+  margin: 0 auto;
+  padding: .5rem 0 2rem;
+}
+.arstore-faq *, .arstore-faq *::before, .arstore-faq *::after { box-sizing: border-box; }
+.arstore-faq h2, .arstore-faq h3, .arstore-faq h4 {
+  font-family: var(--afaq-serif); color: var(--afaq-text); font-weight: 400; line-height: 1.2; margin: 0; letter-spacing: .2px;
+}
+.arstore-faq p { margin: 0 0 1rem; }
+.arstore-faq p:last-child { margin-bottom: 0; }
+.arstore-faq a { color: var(--afaq-accent-strong); }
+.arstore-faq a:hover { color: var(--afaq-text); }
+
+/* Intro + indice */
+.arstore-faq .afaq-hero { text-align: center; margin-bottom: clamp(1.6rem, 5vw, 2.4rem); }
+.arstore-faq .afaq-hero p { max-width: 60ch; margin: 0 auto; color: var(--afaq-text-soft); font-size: 16px; }
+.arstore-faq .afaq-toc { margin-top: 1.4rem; }
+.arstore-faq .afaq-toc-list { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; list-style: none; margin: 0; padding: 0; }
+.arstore-faq .afaq-toc-list a {
+  display: inline-block; text-decoration: none; color: var(--afaq-text); background: #fff;
+  border: 1px solid var(--afaq-line-strong); border-radius: 999px; padding: .45rem 1rem; font-size: 14px;
+  transition: background .2s ease, border-color .2s ease, transform .15s ease;
+}
+.arstore-faq .afaq-toc-list a:hover { background: var(--afaq-accent-soft); border-color: var(--afaq-accent); transform: translateY(-1px); }
+
+/* Grupos */
+.arstore-faq .afaq-group + .afaq-group { margin-top: clamp(2.2rem, 6vw, 3.2rem); }
+.arstore-faq .afaq-group-title {
+  font-size: 24px; font-weight: 400; padding-bottom: .7rem; margin-bottom: 1.2rem;
+  border-bottom: 2px solid var(--afaq-accent); scroll-margin-top: 90px;
+}
+
+/* Cartoes */
+.arstore-faq .afaq-item {
+  background: #fff; border: 1px solid var(--afaq-line-strong); border-radius: 10px;
+  margin-bottom: .9rem; overflow: hidden; box-shadow: 0 1px 2px rgba(51, 51, 51, .06);
+}
+.arstore-faq .afaq-q {
+  font-family: var(--afaq-serif); font-size: 18px; font-weight: 400; color: var(--afaq-text);
+  margin: 0; padding: 1.1rem 1.3rem;
+}
+.arstore-faq .afaq-a { padding: 1.1rem 1.3rem 1.35rem; border-top: 1px solid var(--afaq-line); }
+.arstore-faq .afaq-a p { color: var(--afaq-text-body); }
+.arstore-faq .afaq-a ul { margin: 0 0 1rem; padding-left: 1.2rem; }
+.arstore-faq .afaq-a li { margin-bottom: .4rem; color: var(--afaq-text-body); }
+.arstore-faq .afaq-a > :last-child { margin-bottom: 0; }
+.arstore-faq .afaq-a h3 { font-size: 16px; margin: 1.2rem 0 .7rem; }
+
+/* Aviso ATENCAO */
+.arstore-faq .afaq-note {
+  display: flex; gap: .75rem; background: var(--afaq-note-bg); border: 1px solid var(--afaq-note-border);
+  border-left: 4px solid var(--afaq-accent-strong); border-radius: 4px; padding: .9rem 1rem; margin: 0 0 1rem;
+}
+.arstore-faq .afaq-note-icon { flex: 0 0 auto; font-size: 1.1rem; line-height: 1.5; }
+.arstore-faq .afaq-note p { margin: 0; color: var(--afaq-text-body); }
+.arstore-faq .afaq-note strong { color: var(--afaq-text); }
+
+/* Horarios das lojas */
+.arstore-faq .afaq-stores { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: .5rem; }
+.arstore-faq .afaq-store { background: var(--afaq-section-bg); border: 1px solid var(--afaq-line); border-radius: 10px; padding: 1rem 1.1rem; }
+.arstore-faq .afaq-store h4 { font-size: 16px; margin-bottom: .5rem; color: var(--afaq-accent-strong); }
+.arstore-faq .afaq-store dl { margin: 0; }
+.arstore-faq .afaq-store dt { font-weight: 600; font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; color: var(--afaq-text-soft); margin-top: .55rem; }
+.arstore-faq .afaq-store dd { margin: .1rem 0 0; color: var(--afaq-text-body); }
+
+/* CTA WhatsApp */
+.arstore-faq .afaq-cta {
+  margin-top: clamp(2.4rem, 7vw, 3.6rem); text-align: center; background: var(--afaq-accent-soft);
+  border: 1px solid var(--afaq-line-strong); border-radius: 10px; padding: clamp(1.8rem, 5vw, 2.4rem);
+}
+.arstore-faq .afaq-cta h2 { font-size: 24px; margin-bottom: .5rem; }
+.arstore-faq .afaq-cta p { color: var(--afaq-text-soft); margin-bottom: 1.4rem; }
+.arstore-faq .afaq-btn {
+  display: inline-block; text-decoration: none; font-weight: 600; font-size: 1rem;
+  padding: .85rem 1.8rem; border-radius: 999px; background: var(--afaq-whatsapp);
+  color: #fff !important; box-shadow: 0 6px 18px rgba(12, 122, 62, .3);
+  transition: transform .15s ease, background .2s ease;
+}
+.arstore-faq .afaq-btn:hover { transform: translateY(-2px); background: #0a6735; }
+
+@media (max-width: 720px) {
+  .arstore-faq .afaq-q { padding: 1rem 1.05rem; }
+  .arstore-faq .afaq-a { padding-left: 1.05rem; padding-right: 1.05rem; }
+}

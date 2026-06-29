@@ -2,6 +2,6 @@
 .claude
 scratchpad
 
-# Versões auxiliares para colar no editor da Nuvemshop (não são páginas do site)
-duvidas-frequentes-nuvemshop.html
-duvidas-frequentes-nuvemshop-inline.html
+# Arquivos para colar dentro da Nuvemshop (não são páginas do site Vercel)
+nuvemshop-1-html.html
+nuvemshop-2-css.css
