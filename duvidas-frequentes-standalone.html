@@ -75,12 +75,12 @@
   .brand__logo { width: clamp(150px, 24vw, 200px); height: auto; }
   .site-nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(1rem, 3vw, 2.2rem); list-style: none; margin: 0; padding: 0; }
   .site-nav a, .site-nav__current {
-    text-decoration: none; font-size: 14px; letter-spacing: .03em;
-    padding: .35rem 0; border-bottom: 2px solid transparent; transition: border-color .2s ease, color .2s ease;
+    text-decoration: none; font-family: var(--font-sans); font-size: 14px; font-weight: 400;
+    line-height: 1.2; letter-spacing: 0; padding: .25rem 0; border-bottom: 0; transition: color .2s ease;
   }
-  .site-nav a { color: var(--text); }
-  .site-nav a:hover { border-bottom-color: var(--accent); color: var(--text); }
-  .site-nav__current { color: var(--accent-strong); font-weight: 600; border-bottom-color: var(--accent); cursor: default; }
+  .site-nav a { color: #111111; }
+  .site-nav a:hover { color: var(--text); }
+  .site-nav__current { color: #111111; font-weight: 400; cursor: default; }
 
   .page-hero {
     background: radial-gradient(120% 140% at 90% 0%, var(--accent-soft) 0%, transparent 60%), var(--section-bg);
@@ -186,25 +186,6 @@
   .whatsapp-float:hover { transform: scale(1.07); }
   .whatsapp-float svg { width: 30px; height: 30px; fill: #fff; }
 
-  .site-footer { margin-top: clamp(3rem, 8vw, 5rem); background: var(--accent-soft); border-top: 1px solid var(--line-strong); color: #333; }
-  .site-footer__inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.4rem; padding-block: clamp(2.4rem, 6vw, 3.4rem); }
-  .site-footer__ig { display: inline-grid; place-items: center; width: 40px; height: 40px; color: #333; transition: color .2s ease, transform .15s ease; }
-  .site-footer__ig svg { width: 22px; height: 22px; fill: currentColor; }
-  .site-footer__ig:hover { color: var(--accent-strong); transform: translateY(-1px); }
-  .site-footer__nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(1rem, 3vw, 1.8rem); list-style: none; margin: 0; padding: 0; }
-  .site-footer__nav a, .site-footer__nav .site-nav__current { text-decoration: none; font-size: 14px; border-bottom: none; padding: 0; }
-  .site-footer__nav a { color: #333; }
-  .site-footer__nav a:hover { color: var(--accent-strong); }
-  .site-footer__nav .site-nav__current { color: var(--accent-strong); font-weight: 600; cursor: default; }
-  .site-footer__contact { display: flex; flex-direction: column; gap: .75rem; }
-  .site-footer__contact p { margin: 0; font-size: 14px; color: #333; }
-  .site-footer__contact a { color: #333; text-decoration: none; }
-  .site-footer__contact a:hover { color: var(--accent-strong); text-decoration: underline; }
-  .site-footer__credit { margin: 0; font-size: .82rem; color: #4a4650; }
-  .site-footer__credit strong { font-weight: 700; color: #333; }
-  .site-footer__bottom { border-top: 1px solid var(--line-strong); text-align: center; padding: 1.1rem 1rem; font-size: .8rem; color: #4a4650; }
-  .site-footer__bottom p { margin: 0; }
-
   @media (max-width: 720px) {
     .site-header__inner { padding-block: .9rem; }
     .site-nav ul { gap: 1.1rem; }
@@ -212,7 +193,7 @@
     .faq__body { padding-inline: 1.05rem; }
   }
   @media (max-width: 420px) {
-    .site-nav a { font-size: 13px; }
+    .site-nav a, .site-nav__current { font-size: 13px; }
     .toc__list a { font-size: .82rem; padding: .4rem .8rem; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -500,34 +481,6 @@
       </a>
     </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container site-footer__inner">
-      <a class="site-footer__ig" href="https://instagram.com/arstoretrends" target="_blank" rel="noopener" aria-label="Instagram da AR STORE">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.81s-.01 3.54-.07 4.81c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.43-.36-1.06-.41-2.23C2.21 15.54 2.2 15.16 2.2 12s.01-3.54.07-4.81c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.5.01-4.74.07-.9.04-1.38.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.33-.28.81-.32 1.71C3.21 8.5 3.2 8.85 3.2 12s.01 3.5.07 4.74c.04.9.19 1.38.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.33.13.81.28 1.71.32 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.38-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.33.28-.81.32-1.71.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.04-.9-.19-1.38-.32-1.71-.17-.43-.37-.74-.69-1.06-.32-.32-.63-.52-1.06-.69-.33-.13-.81-.28-1.71-.32C15.5 4.01 15.15 4 12 4zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06zm0 1.8A3.14 3.14 0 1 0 15.14 12 3.14 3.14 0 0 0 12 8.86zm5.16-.95a1.15 1.15 0 1 1-1.15-1.15 1.15 1.15 0 0 1 1.15 1.15z"/></svg>
-      </a>
-
-      <nav class="site-footer__nav" aria-label="Navegação do rodapé">
-        <ul>
-          <li><a href="https://arstoretrends.com.br/">Início</a></li>
-          <li><a href="https://arstoretrends.com.br/contato/">Contato</a></li>
-          <li><a href="https://arstoretrends.com.br/produtos/">Produtos</a></li>
-          <li><span class="site-nav__current" aria-current="page">Dúvidas Frequentes</span></li>
-        </ul>
-      </nav>
-
-      <div class="site-footer__contact">
-        <p><a href="https://wa.me/5555997337848" target="_blank" rel="noopener">5555997337848</a></p>
-        <p><a href="mailto:arstoretrends21@gmail.com">arstoretrends21@gmail.com</a></p>
-        <p>Rua Julio de Castilhos, 976 – Centro | Faxinal do Soturno – RS</p>
-      </div>
-
-      <p class="site-footer__credit">criado com <strong>nuvemshop</strong></p>
-    </div>
-    <div class="site-footer__bottom">
-      <p>Copyright Ar Store Tendencias da Moda LTDA – 58919737000192 – 2026. Todos os direitos reservados.</p>
-    </div>
-  </footer>
 
   <a class="whatsapp-float" href="https://wa.me/5555997337848" target="_blank" rel="noopener"
      aria-label="Fale conosco pelo WhatsApp">

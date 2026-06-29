@@ -130,19 +130,21 @@ p:last-child { margin-bottom: 0; }
 .site-nav a,
 .site-nav__current {
   text-decoration: none;
+  font-family: var(--font-sans);
   font-size: 14px;
-  letter-spacing: .03em;
-  padding: .35rem 0;
-  border-bottom: 2px solid transparent;
-  transition: border-color .2s ease, color .2s ease;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+  padding: .25rem 0;
+  border-bottom: 0;
+  transition: color .2s ease;
 }
-.site-nav a { color: var(--text); }
-.site-nav a:hover { border-bottom-color: var(--accent); color: var(--text); }
+.site-nav a { color: #111111; }
+.site-nav a:hover { color: var(--text); }
 /* Item da página atual (Dúvidas Frequentes) */
 .site-nav__current {
-  color: var(--accent-strong);
-  font-weight: 600;
-  border-bottom-color: var(--accent);
+  color: #111111;
+  font-weight: 400;
   cursor: default;
 }
 
@@ -405,69 +407,6 @@ main { padding-block: clamp(2rem, 6vw, 3.4rem); }
 .whatsapp-float:hover { transform: scale(1.07); }
 .whatsapp-float svg { width: 30px; height: 30px; fill: #fff; }
 
-/* ==================== FOOTER (igual ao da loja) ==================== */
-.site-footer {
-  margin-top: clamp(3rem, 8vw, 5rem);
-  background: var(--accent-soft);
-  border-top: 1px solid var(--line-strong);
-  color: #333;
-}
-.site-footer__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 1.4rem;
-  padding-block: clamp(2.4rem, 6vw, 3.4rem);
-}
-.site-footer__ig {
-  display: inline-grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  color: #333;
-  transition: color .2s ease, transform .15s ease;
-}
-.site-footer__ig svg { width: 22px; height: 22px; fill: currentColor; }
-.site-footer__ig:hover { color: var(--accent-strong); transform: translateY(-1px); }
-
-.site-footer__nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: clamp(1rem, 3vw, 1.8rem);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.site-footer__nav a,
-.site-footer__nav .site-nav__current {
-  text-decoration: none;
-  font-size: 14px;
-  border-bottom: none;
-  padding: 0;
-}
-.site-footer__nav a { color: #333; }
-.site-footer__nav a:hover { color: var(--accent-strong); }
-.site-footer__nav .site-nav__current { color: var(--accent-strong); font-weight: 600; cursor: default; }
-
-.site-footer__contact { display: flex; flex-direction: column; gap: .75rem; }
-.site-footer__contact p { margin: 0; font-size: 14px; color: #333; }
-.site-footer__contact a { color: #333; text-decoration: none; }
-.site-footer__contact a:hover { color: var(--accent-strong); text-decoration: underline; }
-
-.site-footer__credit { margin: 0; font-size: .82rem; color: #4a4650; }
-.site-footer__credit strong { font-weight: 700; color: #333; }
-
-.site-footer__bottom {
-  border-top: 1px solid var(--line-strong);
-  text-align: center;
-  padding: 1.1rem 1rem;
-  font-size: .8rem;
-  color: #4a4650;
-}
-.site-footer__bottom p { margin: 0; }
-
 /* ==================== RESPONSIVO ==================== */
 @media (max-width: 720px) {
   .site-header__inner { padding-block: .9rem; }
@@ -477,7 +416,8 @@ main { padding-block: clamp(2rem, 6vw, 3.4rem); }
 }
 
 @media (max-width: 420px) {
-  .site-nav a { font-size: .88rem; }
+  .site-nav a,
+  .site-nav__current { font-size: 13px; }
   .toc__list a { font-size: .82rem; padding: .4rem .8rem; }
 }
 
