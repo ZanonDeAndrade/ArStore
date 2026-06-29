@@ -121,27 +121,32 @@ p:last-child { margin-bottom: 0; }
 
 /* -------------------- Botão hambúrguer (mobile, à esquerda) -------------------- */
 .nav-toggle {
-  display: none;            /* visível apenas no mobile (media query) */
+  display: none;            /* vira flex no mobile (media query) */
   position: absolute;
   left: clamp(.5rem, 4vw, 1rem);
   top: 50%;
   transform: translateY(-50%);
   width: 44px;
   height: 44px;
-  padding: 11px 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
   border: 0;
   background: transparent;
   cursor: pointer;
   border-radius: var(--radius);
 }
+/* Estilo Nuvemshop: 3 traços finos (1px) — curto, maior no meio, curto */
 .nav-toggle__bar {
   display: block;
-  width: 100%;
-  height: 2px;
+  height: 1px;
   background: var(--text);
   border-radius: 2px;
 }
-.nav-toggle__bar + .nav-toggle__bar { margin-top: 5px; }
+.nav-toggle__bar:nth-child(1) { width: 16px; }
+.nav-toggle__bar:nth-child(2) { width: 24px; }
+.nav-toggle__bar:nth-child(3) { width: 16px; }
 
 /* -------------------- Menu lateral (drawer) -------------------- */
 .drawer-overlay {
@@ -547,7 +552,7 @@ main { padding-block: clamp(2rem, 6vw, 3.4rem); }
   .faq__body { padding-inline: 1.05rem; }
 
   /* Esconde a navegação em linha e mostra o hambúrguer (menu vira drawer) */
-  .nav-toggle { display: block; }
+  .nav-toggle { display: flex; }
   .site-nav { display: none; }
 }
 
