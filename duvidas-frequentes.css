@@ -110,13 +110,146 @@ p:last-child { margin-bottom: 0; }
   gap: 1.1rem;
   padding-block: 1.2rem;
   text-align: center;
+  position: relative;
 }
 
 .brand { display: inline-flex; text-decoration: none; line-height: 0; }
 .brand__logo {
-  width: clamp(150px, 24vw, 200px);
+  width: clamp(150px, 22vw, 210px);
   height: auto;
 }
+
+/* -------------------- Botão hambúrguer (mobile, à esquerda) -------------------- */
+.nav-toggle {
+  display: none;            /* visível apenas no mobile (media query) */
+  position: absolute;
+  left: clamp(.5rem, 4vw, 1rem);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  padding: 11px 10px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+.nav-toggle__bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+}
+.nav-toggle__bar + .nav-toggle__bar { margin-top: 5px; }
+
+/* -------------------- Menu lateral (drawer) -------------------- */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .45);
+  z-index: 290;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .28s ease, visibility .28s ease;
+}
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(86vw, 340px);
+  background: var(--bg);
+  z-index: 300;
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: transform .28s ease, visibility .28s ease;
+  padding: 1.5rem 1.3rem 2rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: 2px 0 26px rgba(0, 0, 0, .12);
+  text-align: left;
+}
+.drawer__close {
+  position: fixed;
+  top: .7rem;
+  right: .8rem;
+  z-index: 310;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  place-items: center;
+}
+.drawer__close svg { width: 26px; height: 26px; }
+
+/* Estados abertos */
+body.nav-open { overflow: hidden; }
+body.nav-open .drawer-overlay { opacity: 1; visibility: visible; }
+body.nav-open .drawer { transform: translateX(0); visibility: visible; }
+body.nav-open .drawer__close { display: grid; }
+
+/* Busca dentro do drawer */
+.drawer__search {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding-left: .9rem;
+  margin-bottom: 1.6rem;
+}
+.drawer__search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--text);
+  padding: .75rem 0;
+}
+.drawer__search input::placeholder { color: var(--text-soft); }
+.drawer__search button {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  background: transparent;
+  color: var(--text-soft);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.drawer__search svg { width: 20px; height: 20px; }
+
+/* Lista de links do drawer */
+.drawer__nav ul { list-style: none; margin: 0; padding: 0; }
+.drawer__nav a,
+.drawer__nav .drawer__current {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .95rem .15rem;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--text);
+  transition: color .2s ease;
+}
+.drawer__nav a:hover { color: var(--accent-strong); }
+.drawer__current { color: var(--text-soft); }
+.drawer__arrow {
+  flex: 0 0 auto;
+  color: var(--text-soft);
+  display: inline-flex;
+}
+.drawer__arrow svg { width: 22px; height: 14px; }
 
 .site-nav ul {
   display: flex;
@@ -410,9 +543,12 @@ main { padding-block: clamp(2rem, 6vw, 3.4rem); }
 /* ==================== RESPONSIVO ==================== */
 @media (max-width: 720px) {
   .site-header__inner { padding-block: .9rem; }
-  .site-nav ul { gap: 1.1rem; }
   .faq__summary { padding: 1rem 1.05rem; }
   .faq__body { padding-inline: 1.05rem; }
+
+  /* Esconde a navegação em linha e mostra o hambúrguer (menu vira drawer) */
+  .nav-toggle { display: block; }
+  .site-nav { display: none; }
 }
 
 @media (max-width: 420px) {
@@ -432,7 +568,8 @@ main { padding-block: clamp(2rem, 6vw, 3.4rem); }
 
 /* Impressão: abre todos os acordeões e remove elementos flutuantes */
 @media print {
-  .whatsapp-float, .toc, .site-nav, .skip-link { display: none !important; }
+  .whatsapp-float, .toc, .site-nav, .nav-toggle,
+  .drawer, .drawer-overlay, .drawer__close, .skip-link { display: none !important; }
   .faq { box-shadow: none; border-color: #ccc; }
   .faq__body { display: block !important; }
   details > .faq__body { display: block !important; }

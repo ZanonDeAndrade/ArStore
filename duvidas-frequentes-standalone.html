@@ -69,10 +69,41 @@
   .site-header { background: var(--bg); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 100; }
   .site-header__inner {
     display: flex; flex-direction: column; align-items: center; gap: 1.1rem;
-    padding-block: 1.2rem; text-align: center;
+    padding-block: 1.2rem; text-align: center; position: relative;
   }
   .brand { display: inline-flex; text-decoration: none; line-height: 0; }
-  .brand__logo { width: clamp(150px, 24vw, 200px); height: auto; }
+  .brand__logo { width: clamp(150px, 22vw, 210px); height: auto; }
+  .nav-toggle {
+    display: none; position: absolute; left: clamp(.5rem, 4vw, 1rem); top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px; padding: 11px 10px; border: 0; background: transparent; cursor: pointer; border-radius: var(--radius);
+  }
+  .nav-toggle__bar { display: block; width: 100%; height: 2px; background: var(--text); border-radius: 2px; }
+  .nav-toggle__bar + .nav-toggle__bar { margin-top: 5px; }
+
+  /* Menu lateral (drawer) */
+  .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 290; opacity: 0; visibility: hidden; transition: opacity .28s ease, visibility .28s ease; }
+  .drawer {
+    position: fixed; top: 0; left: 0; bottom: 0; width: min(86vw, 340px); background: var(--bg); z-index: 300;
+    transform: translateX(-100%); visibility: hidden; transition: transform .28s ease, visibility .28s ease;
+    padding: 1.5rem 1.3rem 2rem; overflow-y: auto; -webkit-overflow-scrolling: touch; box-shadow: 2px 0 26px rgba(0,0,0,.12); text-align: left;
+  }
+  .drawer__close { position: fixed; top: .7rem; right: .8rem; z-index: 310; width: 44px; height: 44px; border: 0; background: transparent; color: #fff; cursor: pointer; display: none; place-items: center; }
+  .drawer__close svg { width: 26px; height: 26px; }
+  body.nav-open { overflow: hidden; }
+  body.nav-open .drawer-overlay { opacity: 1; visibility: visible; }
+  body.nav-open .drawer { transform: translateX(0); visibility: visible; }
+  body.nav-open .drawer__close { display: grid; }
+  .drawer__search { display: flex; align-items: center; gap: .4rem; border: 1px solid var(--line-strong); border-radius: var(--radius); padding-left: .9rem; margin-bottom: 1.6rem; }
+  .drawer__search input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font-family: var(--font-sans); font-size: 15px; color: var(--text); padding: .75rem 0; }
+  .drawer__search input::placeholder { color: var(--text-soft); }
+  .drawer__search button { flex: 0 0 auto; width: 42px; height: 42px; border: 0; background: transparent; color: var(--text-soft); cursor: pointer; display: grid; place-items: center; }
+  .drawer__search svg { width: 20px; height: 20px; }
+  .drawer__nav ul { list-style: none; margin: 0; padding: 0; }
+  .drawer__nav a, .drawer__nav .drawer__current { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .95rem .15rem; text-decoration: none; font-family: var(--font-sans); font-size: 16px; color: var(--text); transition: color .2s ease; }
+  .drawer__nav a:hover { color: var(--accent-strong); }
+  .drawer__current { color: var(--text-soft); }
+  .drawer__arrow { flex: 0 0 auto; color: var(--text-soft); display: inline-flex; }
+  .drawer__arrow svg { width: 22px; height: 14px; }
   .site-nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(1rem, 3vw, 2.2rem); list-style: none; margin: 0; padding: 0; }
   .site-nav a, .site-nav__current {
     text-decoration: none; font-family: var(--font-sans); font-size: 14px; font-weight: 400;
@@ -188,9 +219,10 @@
 
   @media (max-width: 720px) {
     .site-header__inner { padding-block: .9rem; }
-    .site-nav ul { gap: 1.1rem; }
     .faq__summary { padding: 1rem 1.05rem; }
     .faq__body { padding-inline: 1.05rem; }
+    .nav-toggle { display: block; }
+    .site-nav { display: none; }
   }
   @media (max-width: 420px) {
     .site-nav a, .site-nav__current { font-size: 13px; }
@@ -201,7 +233,8 @@
     *, *::before, *::after { transition-duration: .001ms !important; animation-duration: .001ms !important; }
   }
   @media print {
-    .whatsapp-float, .toc, .site-nav, .skip-link { display: none !important; }
+    .whatsapp-float, .toc, .site-nav, .nav-toggle,
+    .drawer, .drawer-overlay, .drawer__close, .skip-link { display: none !important; }
     .faq { box-shadow: none; border-color: #ccc; }
     .faq__body { display: block !important; }
     details > .faq__body { display: block !important; }
@@ -213,19 +246,50 @@
 
   <header class="site-header">
     <div class="container site-header__inner">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-drawer" aria-label="Abrir menu de navegação">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
       <a class="brand" href="https://arstoretrends.com.br/" aria-label="AR STORE — Tendências da Moda — página inicial">
-        <img class="brand__logo" src="https://dcdn-us.mitiendanube.com/stores/007/413/118/themes/common/logo-921865424926013957-1773355001-42b83640f7e814cebc9c404c550e63cb1773355002.png" alt="AR STORE — Tendências da Moda" width="190" height="37" />
+        <img class="brand__logo" src="logo-arstore.png" alt="AR STORE — Tendências da Moda" width="240" height="98" />
       </a>
       <nav class="site-nav" aria-label="Navegação principal">
         <ul>
           <li><a href="https://arstoretrends.com.br/">Início</a></li>
+          <li><a href="https://arstoretrends.com.br/produtos1/">Produtos</a></li>
+          <li><a href="https://arstoretrends.com.br/acessorios/">Acessórios</a></li>
+          <li><a href="https://arstoretrends.com.br/calcados1/">Calçados</a></li>
           <li><a href="https://arstoretrends.com.br/contato/">Contato</a></li>
-          <li><a href="https://arstoretrends.com.br/produtos/">Produtos</a></li>
           <li><span class="site-nav__current" aria-current="page">Dúvidas Frequentes</span></li>
         </ul>
       </nav>
     </div>
   </header>
+
+  <!-- ==================== MENU LATERAL (mobile) ==================== -->
+  <div class="drawer-overlay"></div>
+  <button class="drawer__close" type="button" aria-label="Fechar menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <aside class="drawer" id="site-drawer" aria-label="Menu de navegação" aria-hidden="true">
+    <form class="drawer__search" role="search" action="https://arstoretrends.com.br/busca" method="get">
+      <input type="search" name="q" placeholder="Buscar" aria-label="Buscar produtos" />
+      <button type="submit" aria-label="Buscar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+      </button>
+    </form>
+    <nav class="drawer__nav" aria-label="Navegação principal">
+      <ul>
+        <li><a href="https://arstoretrends.com.br/">Início</a></li>
+        <li><a href="https://arstoretrends.com.br/produtos1/">Produtos <span class="drawer__arrow"><svg viewBox="0 0 28 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 8h25M20 2l6 6-6 6"/></svg></span></a></li>
+        <li><a href="https://arstoretrends.com.br/acessorios/">Acessórios <span class="drawer__arrow"><svg viewBox="0 0 28 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 8h25M20 2l6 6-6 6"/></svg></span></a></li>
+        <li><a href="https://arstoretrends.com.br/calcados1/">Calçados</a></li>
+        <li><a href="https://arstoretrends.com.br/contato/">Contato</a></li>
+        <li><span class="drawer__current" aria-current="page">Dúvidas Frequentes</span></li>
+      </ul>
+    </nav>
+  </aside>
 
   <section class="page-hero">
     <div class="container page-hero__inner">
@@ -486,5 +550,30 @@
      aria-label="Fale conosco pelo WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.738-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
   </a>
+
+  <!-- Menu lateral (mobile) -->
+  <script>
+    (function () {
+      var btn = document.querySelector('.nav-toggle');
+      var drawer = document.getElementById('site-drawer');
+      var overlay = document.querySelector('.drawer-overlay');
+      var closeBtn = document.querySelector('.drawer__close');
+      if (!btn || !drawer) return;
+      function setOpen(open) {
+        document.body.classList.toggle('nav-open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      }
+      btn.addEventListener('click', function () { setOpen(true); });
+      if (closeBtn) closeBtn.addEventListener('click', function () { setOpen(false); });
+      if (overlay) overlay.addEventListener('click', function () { setOpen(false); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setOpen(false);
+      });
+      drawer.addEventListener('click', function (e) {
+        if (e.target.closest('a')) setOpen(false);
+      });
+    })();
+  </script>
 </body>
 </html>
