@@ -1,0 +1,7 @@
+# Pastas/arquivos que NÃO devem ir para o site público
+.claude
+scratchpad
+
+# Versões auxiliares para colar no editor da Nuvemshop (não são páginas do site)
+duvidas-frequentes-nuvemshop.html
+duvidas-frequentes-nuvemshop-inline.html

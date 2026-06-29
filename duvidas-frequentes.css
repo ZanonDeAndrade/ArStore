@@ -104,53 +104,46 @@ p:last-child { margin-bottom: 0; }
 }
 .site-header__inner {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  min-height: 76px;
-  flex-wrap: wrap;
+  gap: 1.1rem;
+  padding-block: 1.2rem;
+  text-align: center;
 }
 
-.brand {
-  display: inline-flex;
-  flex-direction: column;
-  text-decoration: none;
-  line-height: 1;
-}
-.brand__name {
-  font-family: var(--font-serif);
-  font-weight: 700;
-  font-size: clamp(1.4rem, 3.5vw, 1.9rem);
-  letter-spacing: .18em;
-  color: var(--text);
-}
-.brand__tag {
-  font-family: var(--font-sans);
-  font-size: .58rem;
-  letter-spacing: .42em;
-  text-transform: uppercase;
-  color: var(--text-soft);
-  margin-top: .35rem;
-  padding-left: .18em;
+.brand { display: inline-flex; text-decoration: none; line-height: 0; }
+.brand__logo {
+  width: clamp(150px, 24vw, 200px);
+  height: auto;
 }
 
 .site-nav ul {
   display: flex;
-  gap: clamp(1rem, 3vw, 2rem);
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2.2rem);
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.site-nav a {
+.site-nav a,
+.site-nav__current {
   text-decoration: none;
-  color: var(--text);
   font-size: .95rem;
   letter-spacing: .03em;
   padding: .35rem 0;
   border-bottom: 2px solid transparent;
   transition: border-color .2s ease, color .2s ease;
 }
+.site-nav a { color: var(--text); }
 .site-nav a:hover { border-bottom-color: var(--accent); color: var(--text); }
+/* Item da página atual (Dúvidas Frequentes) */
+.site-nav__current {
+  color: var(--accent-strong);
+  font-weight: 600;
+  border-bottom-color: var(--accent);
+  cursor: default;
+}
 
 /* ==================== HERO ==================== */
 .page-hero {
@@ -162,15 +155,6 @@ p:last-child { margin-bottom: 0; }
 .page-hero__inner {
   padding-block: clamp(2.4rem, 7vw, 4.2rem);
   text-align: center;
-}
-.page-hero .eyebrow {
-  display: inline-block;
-  font-size: .72rem;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--accent-strong);
-  font-weight: 600;
-  margin-bottom: 1rem;
 }
 .page-hero h1 {
   font-size: clamp(2rem, 6vw, 3.1rem);
@@ -441,8 +425,15 @@ main { padding-block: clamp(2rem, 6vw, 3.4rem); }
   margin-bottom: 1rem;
   color: #000;
 }
-.site-footer .brand__name { color: #000; }
-.site-footer .brand__tag { color: #4a4650; }
+.site-footer .brand { display: inline-flex; flex-direction: column; line-height: 1; }
+.site-footer .brand__name {
+  font-family: var(--font-serif); font-weight: 700; font-size: 1.5rem;
+  letter-spacing: .18em; color: #000;
+}
+.site-footer .brand__tag {
+  font-family: var(--font-sans); font-size: .58rem; letter-spacing: .42em;
+  text-transform: uppercase; color: #4a4650; margin-top: .35rem; padding-left: .18em;
+}
 .site-footer p { color: #333; font-size: .95rem; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; }
 .site-footer li { margin-bottom: .55rem; }
